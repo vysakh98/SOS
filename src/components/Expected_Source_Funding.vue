@@ -84,6 +84,7 @@ methods:{
    this.Organization=''
         this.Amount=''
         this.Description=''  
+        this.dialog=false
   }
   else{
   this.Sum=this.Sum+parseInt(this.Amount)
@@ -95,6 +96,7 @@ methods:{
         this.Organization=''
         this.Amount=''
         this.Description=''
+        this.dialog=false
     }
   }
   },
