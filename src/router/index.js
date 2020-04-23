@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import v2 from '@/components/v2.vue'
 import v1 from '@/components/Expected_Source_Funding.vue'
 import v3 from '@/components/v3.vue'
+import v4 from '@/components/v4.vue'
 
 
 Vue.use(VueRouter)
@@ -16,7 +17,10 @@ Vue.use(VueRouter)
    component:v1},
    {path:'/v3',
    name:'v3',
-   component:v3}
+   component:v3},
+   {path:'/v4',
+   name:'v4',
+   component:v4}
 ]
 
 const router = new VueRouter({

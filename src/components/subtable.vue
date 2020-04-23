@@ -127,9 +127,8 @@ OthersPercent:function(){
 	padding-bottom:10px;
 }
 .btn{
-position:relative;
-left:220px;
-bottom:6px;
+position:absolute;
+right:50px;
 }
 p{
 margin-bottom:0px;

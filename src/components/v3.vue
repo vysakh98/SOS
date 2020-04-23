@@ -16,9 +16,17 @@ class="elevation-1">
   </template>
 </v-edit-dialog>
 </template>
-<template #body.append>
+<template #body.append={headers}>
+<tr>
+    <td :colspan="headers.length">
 <div><v-app-bar-nav-icon @click="Show=!Show"></v-app-bar-nav-icon></div>
+    </td>
+</tr>
+<tr>
+    <td :colspan="headers.length">
 <subtable v-show="Show" :sos="Amount" v-on:Subtotal="Total($event)"></subtable>
+    </td>
+</tr>
 </template>
 <template #footer>
 <div id="footer">
