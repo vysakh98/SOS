@@ -7,9 +7,25 @@ class="elevation-1"
 >
 <template #item.Amount="{item}">
 <v-edit-dialog :return-value.sync="item.Amount"
-        >{{ item.Amount }}
+       @save="save(item.Amount)" >{{ item.Amount }}
   <template #input>
      <v-text-field v-model="Amount" label="Edit"></v-text-field>
+  </template>
+</v-edit-dialog>
+</template>
+<template #item.Description="{item}">
+<v-edit-dialog :return-value.sync="item.Description"
+        >{{ item.Description }}
+  <template #input>
+     <v-text-field v-model="Description" label="Edit"></v-text-field>
+  </template>
+</v-edit-dialog>
+</template>
+<template #item.Organization="{item}">
+<v-edit-dialog :return-value.sync="item.Organization"
+        >{{ item.Organization }}
+  <template #input>
+     <v-text-field v-model="Organization" label="Edit"></v-text-field>
   </template>
 </v-edit-dialog>
 </template>
@@ -50,6 +66,7 @@ props: {
   },
 data(){
 	return{
+	Pervamount:null,
 	Total:null,
 	Sum:0,
 	Organization:'',
@@ -67,6 +84,7 @@ data(){
 },
 methods:{
 submit:function(){
+if(this.$refs.form.validate()){
 this.Sum=parseInt(this.Sum)+parseInt(this.Amount)
      let data={Organization:this.Organization,
             Amount:this.Amount,
@@ -78,9 +96,16 @@ this.Sum=parseInt(this.Sum)+parseInt(this.Amount)
         this.Description=''
         this.dialog=false
         this.$emit('Subtotal',{total:this.Sum})
+    }
     },
 upper(e){
   this.Organization = e.target.value.toUpperCase()
+  },
+  save(amount){
+  console.log(amount)
+  this.Sum=this.Sum-amount
+  this.Sum=this.Sum+parseInt(this.Amount)
+  this.$emit('Subtotal',{total:this.Sum})
   }
 },
 computed:{
@@ -103,7 +128,7 @@ OthersPercent:function(){
 }
 .btn{
 position:relative;
-left:230px;
+left:220px;
 bottom:6px;
 }
 p{
@@ -121,5 +146,6 @@ margin-bottom:10px;
 	border-top:1px solid black;
 	padding-top:10px;
 	padding-left:5px;
-}
+}	
+
 </style>
