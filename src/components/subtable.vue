@@ -77,8 +77,8 @@ data(){
             align: 'start',
             sortable: false,
             value: 'Organization',},
-          {text:'Description',value:'Description'},
-          {text:'Amount(€)',value:'Amount'}],
+          {text:'Amount(€)',value:'Amount'},
+          {text:'Description',value:'Description'},],
      dialog:false
 	}
 },
@@ -128,7 +128,7 @@ OthersPercent:function(){
 }
 .btn{
 position:absolute;
-right:50px;
+left:60%;
 }
 p{
 margin-bottom:0px;

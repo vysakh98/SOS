@@ -23,7 +23,7 @@ class="elevation-1">
     </td>
 </tr>
 <tr>
-    <td :colspan="headers.length">
+    <td>
 <subtable v-show="Show" :sos="Amount" v-on:Subtotal="Total($event)"></subtable>
     </td>
 </tr>

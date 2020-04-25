@@ -5,10 +5,13 @@
 class="elevation-1">
 <template #body.append="{headers}">
 <tr :colspan="headers.length">
-<td>Subtotal</td>
+<td>OthersSub-Total</td>
 <td></td>
 <td><v-chip color="blue">{{Sum}}</v-chip></td>
 </tr>
+</template>
+<template #top>
+<div class="green"><p class="display-1 white--text">Other-Contributors<span><v-btn id="add" class="white--text" @click="add"><v-icon class="black--text">add</v-icon></v-btn></span></p></div>
 </template>
 <template #item.Amount="{item}">
 <v-edit-dialog @save="save(item.Amount)" :return-value.sync="item.Amount"
@@ -34,14 +37,8 @@ class="elevation-1">
   </template>
 </v-edit-dialog>
 </template>
-<template #top>
-<v-container class="green" id="green">
-<h1 class=" white--text">other contributors <span class="btn"><v-btn class="btn" @click="add"><v-icon>add</v-icon></v-btn></span></h1>
-</v-container>
-</template>
 </v-data-table>
 </template>
-
 <script>
 export default{
 props: {
@@ -51,33 +48,33 @@ props: {
   },
 	data(){
 	return{
-	Sum:null,
-	Amount:null,
-	Description:'',
-	Organization:'',
+  Sum:null,
+  Amount:null,
+  Description:'',
+  Organization:'',
 	items:[],
 	headers:[ {text: 'Organization',
             align: 'start',
             sortable: false,
             value: 'Organization',},
              {text:'Description',value:'Description'},
-             {text:'Amount(€)',value:'Amount'}
+             {text:'',value:'Amount'}
           ]
 
 	}
 	},
-	methods:{
-	add(){
-	this.items.push({Organization:'',Description:'',Amount:''})
-	},
-	save(amount){
+  methods:{
+  add(){
+  this.items.push({Organization:'',Description:'',Amount:''})
+  },
+  save(amount){
       console.log(amount)
        this.Sum=this.Sum-amount
       this.Sum=this.Sum+parseInt(this.Amount)
       this.$emit('Subtotal',{total:this.Sum})
   }
-	},
-	computed:{
+  },
+  computed:{
 OthersPercent:function(){
   let Total=parseInt(this.sos)+this.Sum
   return Math.round((this.Sum/Total)*100)
@@ -86,19 +83,30 @@ OthersPercent:function(){
 }
 </script>
 
-<style scoped>
+<style scopped>
+.green{
+  height:50px;
+}
+#add{
+position:absolute;
+left:89%;
+margin-top:5px;
+}
 .elevation-1{
 	border:1px solid black;
 }
 .btn{
 position:absolute;
-left:80%;
-padding-bottom:10px;
+left:60%;
 }
 #footer{
 	border-top:1px solid black;
 }
 #Oi{
 	border-bottom: 2px solid red;
+}
+.v-small-dialog__activator{
+  width:100px;
+  border-bottom:1px solid blue;
 }
 </style>

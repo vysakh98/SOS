@@ -1,10 +1,9 @@
 <template>
-<div>
 <v-container>
-<h1>Expected Sources of Income </h1>
+<h1>Expected Source of Income</h1>
 <v-data-table
 :items="items"
-:headers="headers"
+:headers="header"
 class="elevation-1">
 <template #item.Percent>
 <td><v-chip color="blue" dark>{{Sospercent}}%</v-chip></td>
@@ -18,51 +17,73 @@ class="elevation-1">
 </v-edit-dialog>
 </template>
 <template #body.append="{headers}">
-<tr>
- <td :colspan="headers.length">
+<tr :colspan="headers.length">
+ <td :colspan="headers.length" id="table-td">
     <subtable :sos="Amount" v-on:Subtotal="Total($event)"></subtable>
  </td>
 </tr>
 <tr :colspan="headers.length">
-<td>Expected-total</td>
+<td id="ext">Expected-total</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 <td></td>
 <td><v-chip color="blue" dark>{{ExpectedTotal}}</v-chip></td>
 <td></td>
 </tr>
 <tr :colspan="headers.length">
 <td>Others-percent</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
 <td><v-chip color="blue" dark>{{OthersPercent}}%</v-chip></td>
 </tr>
 </template>
 </v-data-table>
 </v-container>
-</div>
 </template>
 
 
-
-
 <script>
-import subtable from '@/components/subtable2.vue'
+import subtable from '@/components/subtable3.vue'
 export default{
-data(){
-return{
-   total:null,
-   Amount:null,
-   items:[{Organization:'SOS',Description:'',Amount:'',Percent:''}],
-       headers:[ {text: 'Organization',
+    data()
+    {
+    return{
+    total:null,
+    Amount:null,
+    Organization:'',
+    Description:'',
+     items:[{Organization:'SOS contribution sought in application',Amount:'',Percent:''}],
+       header:[ {text: '',
             align: 'start',
             sortable: false,
-            value: 'Organization',},
-           {text:'Percentage',value:'Percent'},
-           {text:'Amount(€)',value:'Amount'}]
-}
+            value: 'Organization',
+            class:'h'},
+            {text:'',value:'null',sortable: false},
+            {text:'',value:'null',sortable: false},
+            {text:'',value:'null',sortable: false},
+            {text:'',value:'null',sortable: false},
+            {text:'',value:'null',sortable: false},
+            {text:'',value:'null',sortable: false},
+            {text:'',value:'null',sortable: false},
+           {text:'Amount(€)',value:'Amount',class:'h'},
+           {text:'Percentage',value:'Percent'}]
+       }
 },
 methods:{
 	Total:function(e){
   this.total=e.total
   }
-},
+ },
 components:{
 	'subtable':subtable
 },
@@ -79,30 +100,31 @@ computed:{
   return Math.round((this.total/Total)*100)
   }
 }
-
 }
-
 </script>
+ 
 
 <style scoped>
+#add{
+	position:absolute;
+	left:90%;
+}
+#table-td{
+	padding-left:0px;
+	padding-right:0px;
+	border:1px solid black;
+}
 .elevation-1{
 	border:1px solid black;
 }
-
-#green{
-	height:50px;
-	padding-bottom:10px;
+.h{
+	font-Size:1.5em;
 }
-#btn{
-	position:absolute;
-	right:20px;
+thead{
+	font-size:1.5em;
 }
-#p1{
-	padding-bottom:10px;
+.v-small-dialog__activator{
+	width:100px;
+	border-bottom:1px solid blue;
 }
-#footer{
-	border:1px solid black;
-}
-
-
 </style>
