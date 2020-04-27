@@ -1,6 +1,8 @@
 <template>
-<v-container>
-<h1>Expected Source of Income</h1>
+<v-container id="top-container">
+<v-toolbar class="grey">
+<v-toolbar-title flat class="white--text display-1">Expected Source of Income</v-toolbar-title>
+</v-toolbar>
 <v-data-table
 :items="items"
 :headers="header"
@@ -10,7 +12,7 @@ class="elevation-1">
 </template>
 <template #item.Amount="{item}">
 <v-edit-dialog :return-value.sync="item.Amount"
-        >{{ item.Amount }}
+        ><p class="td">{{ item.Amount}}</p>
   <template #input>
      <v-text-field v-model="Amount" label="Edit" type="number"></v-text-field>
   </template>
@@ -105,6 +107,9 @@ computed:{
  
 
 <style scoped>
+.td{
+  border-bottom:1px solid blue;
+}
 #add{
 	position:absolute;
 	left:90%;
@@ -125,6 +130,9 @@ thead{
 }
 .v-small-dialog__activator{
 	width:100px;
-	border-bottom:1px solid blue;
+}
+#top-container{
+  background-color:#dbdbdb;
+  margin-top:10px;
 }
 </style>
